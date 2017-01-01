@@ -17,7 +17,7 @@ Obtain WhatsApp conversation _chat.txt file:
 
 4. Save the file via email, dropbox or any other means.
 
-Use WhatsApp_Analytics.py parser:
+...Use WhatsApp_Analytics.py parser:
 
 5. Type the following in Terminal: 
 ```
