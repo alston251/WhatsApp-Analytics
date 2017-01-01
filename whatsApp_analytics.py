@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # whatsApp_analytics.py
-# 31/12/2016
+# 01/01/2017
 # Alston Cheung
 
 import sys
@@ -58,27 +58,18 @@ def main():
     def sort_tuple(each_word):
         return each_word[-1]
 
-    # pass file to names extraction function
+    # pass file path to extract_names function
     result = extract_names(txt_file)
     result = sorted(result, key = sort_tuple, reverse = True)
-    print result
 
-    # matplotlib parameters
-    labels = zip(*result)[0]
+    # matplotlib chart parameters
+    labels = []
+    for each in result:
+        labels.append(each[0] + " - " + str(each[1]))
     values = zip(*result)[1]
 
-    # generate custom matplotlb labels
-    def make_autopct(values):
-        def my_autopct(pct):
-            total = sum(values)
-            val = int(round(pct*total/100.0))
-            return '{p:.2f}%  ({v:d})'.format(p=pct,v=val)
-        return my_autopct
-
     # plot pie chart
-    plt.pie(values, labels = labels, shadow = True, autopct = make_autopct(values))
-    plt.style.use('seaborn-bright')
-    plt.title("Number of WhatsApp messages")
+    plt.pie(values, labels = labels, shadow = True)
     plt.axis('equal')
     plt.show()
 
